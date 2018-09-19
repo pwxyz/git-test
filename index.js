@@ -16,7 +16,27 @@ const exec = util.promisify(require("child_process").exec);
 // });
 
 
-async function git(cmd){
-  let obj =  await exec(cmd);
-  // if()
-}
+// async function git(cmd){
+//   let obj =  await exec(cmd);
+//   // if()
+// }
+
+exec(`git add .`)
+.then(res => {
+  console.log(`git add complte, pre commit..`)
+  return exec(`git commit -m "add test"`)
+} )
+.then(res => {
+  console.log(`git commit complte, pre pull..`)
+  return exec(`git pull origin master`)
+} )
+.then(res => {
+  console.log(`git pull complte, pre push..`)
+  return exec(`git push origin master`)
+} )
+.then(res => {
+  console.log(`compelte \n`, res)
+} )
+.catch(err => {
+  console.error(`console.err`,err)
+})
