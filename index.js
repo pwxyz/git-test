@@ -21,18 +21,21 @@ const exec = util.promisify(require("child_process").exec);
 //   // if()
 // }git pull --allow-unrelated-histories  
 
+const message = process.argv[2] || "add some change"
+const branch = process.argv[3] || "master"
+
 exec(`git add .`)
 .then(res => {
   console.log(`git add complte, pre commit..`)
-  return exec(`git commit -m "add test"`)
+  return exec(`git commit -m ${message}`)
 } )
 .then(res => {
   console.log(`git commit complte, pre pull..`)
-  return exec(`git pull origin master --allow-unrelated-histories`)
+  return exec(`git pull origin ${branch} --allow-unrelated-histories`)
 } )
 .then(res => {
   console.log(`git pull complte, pre push..`)
-  return exec(`git push origin master`)
+  return exec(`git push origin ${branch}`)
 } )
 .then(res => {
   console.log(`compelte \n`, res)
