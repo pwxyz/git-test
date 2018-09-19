@@ -19,7 +19,7 @@ const exec = util.promisify(require("child_process").exec);
 // async function git(cmd){
 //   let obj =  await exec(cmd);
 //   // if()
-// }
+// }git pull --allow-unrelated-histories  
 
 exec(`git add .`)
 .then(res => {
@@ -28,7 +28,7 @@ exec(`git add .`)
 } )
 .then(res => {
   console.log(`git commit complte, pre pull..`)
-  return exec(`git pull origin master`)
+  return exec(`git pull origin master --allow-unrelated-histories`)
 } )
 .then(res => {
   console.log(`git pull complte, pre push..`)
