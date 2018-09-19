@@ -22,7 +22,7 @@ const exec = util.promisify(require("child_process").exec);
 // }git pull --allow-unrelated-histories  
 
 const message = '"'+ process.argv[2] +'"' || "add some change"
-const branch ='"'+  process.argv[3]+'"' || "master"
+const branch =process.argv[3] ?'"'+  process.argv[3]+'"' : "master"
 
 exec(`git add .`)
 .then(res => {
